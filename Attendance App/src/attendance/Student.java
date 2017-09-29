@@ -2,49 +2,55 @@ package attendance;
 
 public class Student implements Attendee{
 
-	private boolean present;
+	private String first;
+	private String last;
+	private boolean studentIsPresent;
+	
+	public Student(String firstname, String lastname) {
+		this.first = firstname;
+		this.last = lastname;
+	}
 	
 	public boolean isPresent() {
-		if(present) {
-			return true;
-		}
-		return false;
+		return studentIsPresent;
 	}
 
-	@Override
 	public void setPresent(boolean present) {
-		// TODO Auto-generated method stub
-		
+		this.studentIsPresent = present;
 	}
 
-	@Override
 	public String getFirstName() {
-		// TODO Auto-generated method stub
-		return null;
+		return first;
 	}
 
-	@Override
 	public String getLastName() {
-		// TODO Auto-generated method stub
-		return null;
+		return last;
 	}
 
-	@Override
-	public boolean mathces(String first, String last) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean matches(String first, String last) {
+		return first.toLowerCase().equals(first.toLowerCase()) && last.toLowerCase().equals(last.toLowerCase());
 	}
 
-	@Override
 	public boolean matches(String last) {
-		// TODO Auto-generated method stub
-		return false;
+		return last.toLowerCase().equals(last.toLowerCase());
 	}
 
-	@Override
 	public String getReportString() {
-		// TODO Auto-generated method stub
-		return null;
+		String s1 = last;
+		String s2 = first;
+		
+		while (s1.length() < 20) {
+			s1 += " ";
+		}
+		while (s2.length() < 20) {
+			s2 += " ";
+		}
+		
+		if (studentIsPresent) {
+			return s1 + s2 + "PRESENT";
+		}
+		return s1 + s2 + "ABSENT";
+		
 	}
 
 }
